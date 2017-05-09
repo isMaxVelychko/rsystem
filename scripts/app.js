@@ -69,16 +69,6 @@ function renderGroups(data, element) {
     });
 }
 
-function renderGroupsNotFounded(element) {
-    let li = document.createElement("li");
-
-    let p = document.createElement("p");
-    p.innerText = "not found";
-    li.appendChild(p);
-
-    element.append(li);
-}
-
 function handleChange(event) {
     let categoryId = event.target.value;
     getGroups(categoryId)
