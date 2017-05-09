@@ -2,6 +2,7 @@ let selectElem = document.querySelector("select");
 let ulLeftElem = document.querySelector(".left ul");
 let ulRightElem = document.querySelector(".right ul");
 let formElem = document.querySelector("form");
+let notFoundTextElem = document.querySelector("p.not-found-text");
 let apiURL = "http://localhost:3000";
 let vkUrl = "https://vk.com/";
 
@@ -68,6 +69,16 @@ function renderGroups(data, element) {
     });
 }
 
+function renderGroupsNotFounded(element) {
+    let li = document.createElement("li");
+
+    let p = document.createElement("p");
+    p.innerText = "not found";
+    li.appendChild(p);
+
+    element.append(li);
+}
+
 function handleChange(event) {
     let categoryId = event.target.value;
     getGroups(categoryId)
@@ -104,6 +115,7 @@ function ajaxHelper(method, url) {
 function handleSearch() {
     event.preventDefault();
     if(this.text.value) {
+        showElem(notFoundTextElem, false);
         searchGroups(this.text.value)
             .then(data => {
                 cleanGroups(ulLeftElem);
@@ -111,5 +123,10 @@ function handleSearch() {
             })
     } else {
         cleanGroups(ulLeftElem);
+        showElem(notFoundTextElem, true);
     }
+}
+
+function showElem(element, flag) {
+    element.style.display = flag ? "block" : "none";
 }

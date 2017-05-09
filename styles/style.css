@@ -80,3 +80,10 @@ p {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+p.not-found-text {
+    display: none;
+    background: gainsboro;
+    margin: 0;
+    padding: 10px;
+}
